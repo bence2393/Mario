@@ -1,11 +1,12 @@
 # Mario
 
-Simple console-based platform game written in C#. Use the left and right arrow keys to move the character and press space to jump.
+Console platform game written in C#. Move with the left and right arrow keys and press space to jump. Collect the `*` coins scattered in the level.
 
 ## Running
 
 ```bash
+dotnet build MarioGame
 dotnet run --project MarioGame
 ```
 
-The console window will display the level and the character represented by `M`. Navigate through the level using the controls above.
+The console displays colored blocks where `#` marks the ground and `*` are coins. The player is shown as a red `M`. Your current coin count is printed below the level.

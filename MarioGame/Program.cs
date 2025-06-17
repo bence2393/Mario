@@ -7,11 +7,11 @@ class Program
     {
         "########################################".ToCharArray(),
         "#                                      #".ToCharArray(),
-        "#                                      #".ToCharArray(),
+        "#        *                             #".ToCharArray(),
         "#      ####                            #".ToCharArray(),
-        "#                                      #".ToCharArray(),
+        "#                 *                    #".ToCharArray(),
         "#                     ####             #".ToCharArray(),
-        "#                                      #".ToCharArray(),
+        "#            *                         #".ToCharArray(),
         "########################################".ToCharArray()
     };
 
@@ -21,6 +21,7 @@ class Program
     static int playerX = 2;
     static int playerY = height - 2;
     static int velocityY = 0;
+    static int coinCount = 0;
 
     static void Main()
     {
@@ -79,6 +80,12 @@ class Program
                     playerY++;
             }
         }
+
+        if (level[playerY][playerX] == '*')
+        {
+            coinCount++;
+            level[playerY][playerX] = ' ';
+        }
     }
 
     static bool IsOnGround()
@@ -94,11 +101,25 @@ class Program
             for (int x = 0; x < width; x++)
             {
                 if (x == playerX && y == playerY)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write('M');
+                }
                 else
-                    Console.Write(level[y][x]);
+                {
+                    char c = level[y][x];
+                    if (c == '#')
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    else if (c == '*')
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    else
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write(c);
+                }
             }
             Console.WriteLine();
         }
+        Console.ResetColor();
+        Console.WriteLine($"Coins: {coinCount}");
     }
 }
